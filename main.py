@@ -101,7 +101,7 @@ def go(config: DictConfig):
             # step
 
             _ = mlflow.run(
-                os.path.join("src", "train_random_forest"), "main",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "train_random_forest"), "main",
                 parameters={
                     "trainval_artifact": "trainval_data.csv:latest",
                     "val_size": config["modeling"]["val_size"],
