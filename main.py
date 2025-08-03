@@ -52,7 +52,7 @@ def go(config: DictConfig):
 
         if "basic_cleaning" in active_steps:
             _ = mlflow.run(
-                os.path.join("src", "basic_cleaning"), "main",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"), "main",
                 parameters={
                     "input_artifact": "sample.csv:latest",
                     "output_artifact": "clean_sample.csv",
@@ -66,7 +66,7 @@ def go(config: DictConfig):
 
         if "data_check" in active_steps:
             _ = mlflow.run(
-                os.path.join("src", "data_check"), "main",
+                os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"), "main",
                 parameters={
                     "csv": "clean_sample.csv:latest",
                     "ref": "clean_sample.csv:reference",
